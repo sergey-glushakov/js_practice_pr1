@@ -390,6 +390,10 @@ textarea:focus {
   cursor: pointer;
 }
 
+/* .glazing_block.active {
+  background: #ccc;
+} */
+
 .glazing_cold {
   margin-top: 4rem;
   padding: 2.5rem 0;
