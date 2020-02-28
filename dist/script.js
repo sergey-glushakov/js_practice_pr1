@@ -15291,6 +15291,7 @@ var tabs = function tabs(headerSelector, tabSelector, contentSelector, activeCla
   hideTabContent();
   showTabContent();
   header.addEventListener('click', function (e) {
+    // реализация через делегирование
     var target = e.target;
 
     if (target && (target.classList.contains(tabSelector.replace(/\./, "")) || target.parentNode.classList.contains(tabSelector.replace(/\./, "")))) {

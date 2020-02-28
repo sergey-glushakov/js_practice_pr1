@@ -23,7 +23,7 @@ const tabs = (headerSelector, tabSelector, contentSelector, activeClass) => {
     hideTabContent();
     showTabContent();
 
-    header.addEventListener('click', (e) => {
+    header.addEventListener('click', (e) => {                                  // реализация через делегирование
         const target = e.target;
         if (target && (target.classList.contains(tabSelector.replace(/\./, "")) ||
         target.parentNode.classList.contains(tabSelector.replace(/\./, "")))) { // убираю точку в имени класса, приходящего в tabSelector 
