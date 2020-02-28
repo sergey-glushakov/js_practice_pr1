@@ -634,8 +634,8 @@ textarea:focus {
 }
 
 .guarantees_block:hover {
-  -webkit-box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  /* -webkit-box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22); */
 }
 
 /*Payment*/
@@ -840,6 +840,7 @@ textarea:focus {
   background-color: rgba(0, 0, 0, 0.5);
 }
 
+
 .myimage {
   position: fixed;
   top: 0;
@@ -873,6 +874,7 @@ textarea:focus {
   transform: translateX(-50%);
   width: 40rem;
   background-color: #ffffff;
+  border-radius: 5px;
 }
 
 .popup_close,

@@ -9,8 +9,7 @@
   "author": "",
   "license": "ISC",
   "browserslist": [
-    "> 1%",
-    "not dead"
+    "> 1%"
   ],
   "devDependencies": {
     "@babel/core": "^7.7.4",
