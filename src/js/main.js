@@ -8,8 +8,8 @@ window.addEventListener("DOMContentLoaded", () => {
     "use strict";
 
     let modalState = {};
-    changeModalState(modalState);
 
+    changeModalState(modalState);
     modals();
     tabs(".glazing_slider", ".glazing_block", ".glazing_content", "active");
     tabs(
@@ -26,5 +26,5 @@ window.addEventListener("DOMContentLoaded", () => {
         "inline-block"
     );
 
-    forms();
+    forms(modalState);
 });

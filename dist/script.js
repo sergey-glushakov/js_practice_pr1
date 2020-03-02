@@ -17733,7 +17733,7 @@ window.addEventListener("DOMContentLoaded", function () {
   Object(_modules_tabs__WEBPACK_IMPORTED_MODULE_2__["default"])(".glazing_slider", ".glazing_block", ".glazing_content", "active");
   Object(_modules_tabs__WEBPACK_IMPORTED_MODULE_2__["default"])(".decoration_slider", ".no_click", ".decoration_content > div > div", "after_click");
   Object(_modules_tabs__WEBPACK_IMPORTED_MODULE_2__["default"])(".balcon_icons", ".balcon_icons_img", ".big_img > img", "do_image_more", "inline-block");
-  Object(_modules_forms__WEBPACK_IMPORTED_MODULE_3__["default"])();
+  Object(_modules_forms__WEBPACK_IMPORTED_MODULE_3__["default"])(modalState);
 });
 
 /***/ }),
@@ -17768,15 +17768,33 @@ var changeModalState = function changeModalState(state) {
   function bindActionToElems(event, elem, prop) {
     elem.forEach(function (item, ndx) {
       item.addEventListener(event, function () {
-        if (elem.length > 1) {
-          state[prop] = ndx;
-        } else {
-          state[prop] = item.value;
-          console.log(item.value);
+        switch (item.nodeName) {
+          case "SPAN":
+            state[prop] = ndx;
+            break;
+
+          case "INPUT":
+            if (item.getAttribute("type") === "checkbox") {
+              ndx === 0 ? state[prop] = "Холодное" : state[prop] = "Теплое";
+              elem.forEach(function (box, j) {
+                box.checked = false;
+
+                if (ndx == j) {
+                  box.checked = true;
+                }
+              });
+            } else {
+              state[prop] = item.value;
+            }
+
+            break;
+
+          case "SELECT":
+            state[prop] = item.value;
+            break;
         }
 
         console.log(state);
-        state[prop] = ndx;
       });
     });
   }
@@ -17784,6 +17802,8 @@ var changeModalState = function changeModalState(state) {
   bindActionToElems("click", windowForm, "form");
   bindActionToElems("input", windowWidth, "width");
   bindActionToElems("input", windowHeight, "height");
+  bindActionToElems("change", windowType, "type");
+  bindActionToElems("change", windowProfile, "profile");
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (changeModalState);
@@ -17860,7 +17880,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 
 
-var forms = function forms() {
+var forms = function forms(state) {
   var form = document.querySelectorAll('form');
   var inputs = document.querySelectorAll('input');
   Object(_checkNumInputs__WEBPACK_IMPORTED_MODULE_6__["default"])('input[name="user_phone"]'); // вынос в отдельную функцию валидации checkNumInputs полей с цифрами
@@ -17919,6 +17939,13 @@ var forms = function forms() {
       statusMessage.classList.add('status');
       item.appendChild(statusMessage);
       var formData = new FormData(item);
+
+      if (item.getAttribute('data-calc') === 'end') {
+        for (var key in state) {
+          formData.append(key, state[key]);
+        }
+      }
+
       postData('assets/server.php', formData).then(function (res) {
         console.log(res);
         statusMessage.textContent = message.success;
