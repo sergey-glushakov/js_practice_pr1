@@ -1,14 +1,11 @@
-const forms = () => {
-    const form = document.querySelectorAll('form'),
-          inputs = document.querySelectorAll('input'),
-          phoneInputs = document.querySelectorAll('input[name="user_phone"]');
+import checkNumInputs from './checkNumInputs';
 
-    phoneInputs.forEach(item => {
-        item.addEventListener('input', () => {
-            item.value = item.value.replace(/\D/, '');
-        });
-    });
-    
+const forms = () => {
+    const form = document.querySelectorAll('form');
+    const inputs = document.querySelectorAll('input');
+
+    checkNumInputs('input[name="user_phone"]'); // вынос в отдельную функцию валидации checkNumInputs полей с цифрами
+
     const message = {
         loading: 'Загрузка...',
         success: 'Спасибо! Скоро мы с вами свяжемся',
